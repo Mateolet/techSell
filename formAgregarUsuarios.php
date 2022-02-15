@@ -76,7 +76,13 @@
                     body: formulario
                 })
                 .then(res => res.json())
-                .then(datos => console.log(datos))
+                .then(datos => {
+                    if(datos == true){
+                      setInterval(() => {
+                          location.href = 'adminUsuarios.php'
+                      }, 1000);
+                }
+            })
                 
             })
 

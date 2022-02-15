@@ -1,7 +1,6 @@
 <?php
   require 'funciones/conexion.php';
-
-$nombreUsu = $_POST["name"];
+  $nombreUsu = $_POST["name"];
 $surname = $_POST["surname"];
 $instagram = $_POST["instagram"];
 $facebook = $_POST["facebook"];
@@ -20,9 +19,8 @@ $sql = "INSERT INTO users
 
 $resultado = mysqli_query($link,$sql);
 
+echo json_encode($resultado);
 
-$num = mysqli_num_rows($resultado);
-json_encode($num);
 // $numRows = mysqli_num_rows($resultado);
 // echo $numRows;
 // if(mysqli_num_rows($resultado)>0){

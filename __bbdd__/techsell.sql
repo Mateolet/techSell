@@ -3,7 +3,7 @@ use techsell;
 
 
 create table users (
-	idUser int primary key,
+	idUser int auto_increment primary key,
     name varchar(50),
     surname varchar(50),
     instagram varchar(50),
@@ -12,7 +12,7 @@ create table users (
 );
 
 create table pub(
-	idPub int primary key,
+	idPub int auto_increment primary key,
     namePub varchar(50),
     imgPub tinytext,
     date datetime,

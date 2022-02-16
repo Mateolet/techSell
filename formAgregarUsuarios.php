@@ -63,7 +63,7 @@
                 let inputTelefono = document.getElementById('telefono').value
                 
                
-
+                console.log(inputTelefono)
                 formulario.append('name',inputName)
                 formulario.append('surname',inputSurname)
                 formulario.append('instagram',inputInstagram)

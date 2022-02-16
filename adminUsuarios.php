@@ -43,7 +43,7 @@
                     <td><?= $user['facebook']  ?></td>
                     <td><?= $user['tel']  ?></td>
                     <td>
-                        <a href="formModificarUsuario.php?" class="btn btn-outline-secondary">
+                        <a href="formModificarUsuarios.php?idUser=<?=$user["idUser"]?>" class="btn btn-outline-secondary">
                             Modificar
                         </a>
                     </td>
@@ -52,11 +52,6 @@
                             Eliminar
                         </a>
                     </td>
-                    <td>
-                     <a href="formModificarPass.php?" class="btn btn-outline-secondary">
-                            Modificar Contraseña
-                        </a>
-                        </td>
                 </tr>
                 <?php
                 endforeach

@@ -27,7 +27,8 @@
                 <input type="tel" class='form-oontrol' id="telefono" >
                 <br>
               
-              
+                <input type="hidden" name="" id="accion" value="">
+
             
             </div>
             <button class='btn btn-success my-3 mr-3 px-4' id="btnAdd">Agregar usuario</button>
@@ -53,25 +54,31 @@
 
 
             formBtn.addEventListener('submit',(e)=>{
-                e.preventDefault();
-                let formulario = new FormData();
 
+                e.preventDefault();
+
+                let formulario = new FormData();
+                
                 let inputName = document.getElementById('nombreUsu').value
                 let inputSurname = document.getElementById('surname').value
-                let inputInstagram = document.getElementById('instagram').value
-                let inputFacebook = document.getElementById('facebook').value
-                let inputTelefono = document.getElementById('telefono').value
+                let inputInstagram = document.getElementById('instagram').value              
+                let inputFacebook = document.getElementById('facebook').value             
+                let inputTelefono = document.getElementById('telefono').value               
+                let inputAccion = document.getElementById('accion')
+                inputAccion.value = "agregar";
+
                 
                
-                console.log(inputTelefono)
+                // console.log(inputTelefono)
                 formulario.append('name',inputName)
                 formulario.append('surname',inputSurname)
                 formulario.append('instagram',inputInstagram)
                 formulario.append('facebook',inputFacebook)
                 formulario.append('telefono',inputTelefono)
+                formulario.append('accion',inputAccion.value)
 
                 
-                fetch('agregarUsuario.php',{
+                fetch('./abm/usersAbm.php',{
                     method:'POST',
                     body: formulario
                 })

@@ -16,6 +16,26 @@ function listarUsuarios()
         // return $resultado;
 }
 
+function listarUsuarioPorID(){
+
+
+
+        $idUser = $_GET["idUser"];
+
+        $link = conectar();
+
+        $sql = "SELECT idUser, name, surname, instagram,facebook,tel
+                 FROM users
+                WHERE idUser = ".$idUser;
+
+        $resultado = mysqli_query($link, $sql);
+        
+                //obtenemos datos en array asociativo
+        $usuario = mysqli_fetch_assoc($resultado);
+
+        return $usuario;
+
+}
 
 // function agregarUsuario(){
 

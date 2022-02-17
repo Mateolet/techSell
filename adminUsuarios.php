@@ -25,7 +25,7 @@
                     <th>Facebook</th>
                     <th>Telefono</th>
                     <th colspan="2">
-                        <a href="formAgregarUsuarios.php" class="btn btn-outline-secondary">
+                        <a href="formAgregarUsuarios.php" class="btn btn-success">
                             Agregar
                         </a>
                     </th>
@@ -48,7 +48,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="formEliminarUsuario.php?" class="btn btn-outline-secondary">
+                        <a href="formEliminarUsuario.php?idUser=<?= $user["idUser"] ?>" class="btn btn-danger" id="btnEliminar">
                             Eliminar
                         </a>
                     </td>

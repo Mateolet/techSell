@@ -68,7 +68,7 @@ $listarID = listarUsuarioPorID();
                 let formulario = new FormData();
 
                 let inputID = document.getElementById("id").value;
-                console.log(inputID)
+                // console.log(inputID)
                 let inputName = document.getElementById('nombreUsu').value
                 let inputSurname = document.getElementById('surname').value
                 let inputInstagram = document.getElementById('instagram').value
@@ -103,6 +103,15 @@ $listarID = listarUsuarioPorID();
                         </div>
                         `
                  
+                        setInterval(() => {
+                            location.href = 'adminUsuarios.php'
+                        }, 4000);
+                }else{
+                    alerta.innerHTML = `
+                        <div class="alert alert-danger" role="alert">
+                            Error al Modificar, Comunicarse con Soporte 
+                        </div>
+                        `
                         setInterval(() => {
                             location.href = 'adminUsuarios.php'
                         }, 4000);

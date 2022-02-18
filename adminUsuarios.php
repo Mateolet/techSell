@@ -35,7 +35,7 @@
                 <?php
                 foreach($users as $user):
                 ?>
-                <tr>
+                <tr class="tr-lista">
                     <td><?=$user['idUser']   ?></td>
                     <td><?= $user['name'] ?></td>
                     <td><?= $user['surname'] ?></td>
@@ -48,7 +48,7 @@
                         </a>
                     </td>
                     <td>
-                        <button class="btn btn-danger btn-agarrar-data" id="btnEliminar" value="<?= $user["idUser"] ?>">
+                        <button class="btn btn-danger btn-agarrar-data" data-nombre="<?= $user["name"]?>" id="btnEliminar" value="<?= $user["idUser"] ?>">
                             Eliminar
                         </button>
                     </td>
@@ -72,15 +72,55 @@
 
             let btnEliminar = document.getElementById("btnEliminar");
             let btn = document.getElementsByClassName("btn-agarrar-data")
+            let tr = document.getElementsByClassName("tr-lista")
+
+
+                for(let i = 0; i<btn.length; i++){  
+                     btn[i].addEventListener('click',(e)=>{     
+
+
+                    e.preventDefault();
+
+                    let formulario = new FormData();
+
+                    let inputID = btn[i].value;
+                    // console.log(inputID)
+                    let inputName = btn[i].dataset.nombre
+
+                    formulario.append('idUser',inputID)
+                    formulario.append('name',inputName)
                     
-            for(let i = 0; i<btn.length; i++){  
-                btn[i].addEventListener('click',()=>{     
-                console.log(btn[i].value,"click")
 
-
-
+                    
+                    fetch('./abm/usersAbm.php',{
+                        method:'POST',
+                        body: formulario
                     })
-                }   
+                    .then(res => res.json())
+                    .then(datos => {
+                            console.log(datos)
+                            if(datos == true){
+                                
+                                location.reload();
+                                
+                                // let trBorrar = tr[i].remove();
+                                // console.log(trBorrar)
+                                
+                      }else{
+                         alerta.innerHTML = `
+                             <div class="alert alert-danger" role="alert">
+                                 Error al Modificar, Comunicarse con Soporte 
+                             </div>
+                             `
+                             setInterval(() => {
+                                 location.href = 'adminUsuarios.php'
+                             }, 4000);
+                     }
+                  })
+                    
+                })
+              }   
+            
 
         /* Hacerlo aca*/
     </script>

@@ -51,4 +51,15 @@ if($_POST["accion"] == "agregar"){
                                         $resultado = mysqli_query($link,$sql);
 
                                         echo json_encode($resultado);
+                    }else{
+
+                        $idUser = $_POST["idUser"];
+                        $nombreUsu = $_POST["name"];
+                        $link = conectar();
+                        $sql = "DELETE FROM users WHERE idUser =".$idUser;
+        
+                        $resultado = mysqli_query($link,$sql);
+
+                        echo json_encode($resultado);
+                        echo json_encode($_POST["idUser"]);
                     }

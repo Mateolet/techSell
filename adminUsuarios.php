@@ -48,9 +48,9 @@
                         </a>
                     </td>
                     <td>
-                        <a href="formEliminarUsuario.php?idUser=<?= $user["idUser"] ?>" class="btn btn-danger" id="btnEliminar">
+                        <button class="btn btn-danger btn-agarrar-data" id="btnEliminar" value="<?= $user["idUser"] ?>">
                             Eliminar
-                        </a>
+                        </button>
                     </td>
                 </tr>
                 <?php
@@ -66,5 +66,23 @@
        
 
     </main>
+
+
+    <script>
+
+            let btnEliminar = document.getElementById("btnEliminar");
+            let btn = document.getElementsByClassName("btn-agarrar-data")
+                    
+            for(let i = 0; i<btn.length; i++){  
+                btn[i].addEventListener('click',()=>{     
+                console.log(btn[i].value,"click")
+
+
+
+                    })
+                }   
+
+        /* Hacerlo aca*/
+    </script>
 
 <?php  include 'includes/footer.php';  ?>

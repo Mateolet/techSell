@@ -53,3 +53,9 @@ main{
 .listadoPalabras{
     
 }
+
+
+#eliminarContainer{
+    width: 20%;
+    background-color: red;
+}

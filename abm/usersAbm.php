@@ -51,7 +51,7 @@ if($_POST["accion"] == "agregar"){
                                         $resultado = mysqli_query($link,$sql);
 
                                         echo json_encode($resultado);
-                    }else{
+                    }elseif($_POST["accion"] == "eliminar"){
 
                         $idUser = $_POST["idUser"];
                         $nombreUsu = $_POST["name"];
@@ -61,5 +61,4 @@ if($_POST["accion"] == "agregar"){
                         $resultado = mysqli_query($link,$sql);
 
                         echo json_encode($resultado);
-                        echo json_encode($_POST["idUser"]);
                     }

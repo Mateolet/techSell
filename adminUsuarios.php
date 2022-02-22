@@ -77,8 +77,6 @@
 
                 for(let i = 0; i<btn.length; i++){  
                      btn[i].addEventListener('click',(e)=>{     
-
-
                     e.preventDefault();
 
                     let formulario = new FormData();
@@ -89,6 +87,7 @@
 
                     formulario.append('idUser',inputID)
                     formulario.append('name',inputName)
+                    formulario.append('accion','eliminar')
                     
 
                     
@@ -98,13 +97,8 @@
                     })
                     .then(res => res.json())
                     .then(datos => {
-                            console.log(datos)
                             if(datos == true){
-                                
-                                location.reload();
-                                
-                                // let trBorrar = tr[i].remove();
-                                // console.log(trBorrar)
+                               tr[i].remove();
                                 
                       }else{
                          alerta.innerHTML = `

@@ -27,9 +27,10 @@
                 <input type="tel" class='form-oontrol' id="telefono" >
                 <br>
               
-                <input type="hidden" name="" id="accion" value="">
+                <input type="hidden" name="" id="accion" value="">            
+            </div>
+            <div id="divAlerta">
 
-            
             </div>
             <button class='btn btn-success my-3 mr-3 px-4' id="btnAdd">Agregar usuario</button>
             <a href="adminUsuarios.php" class='btn btn-outline-secondary'>
@@ -48,6 +49,8 @@
         
             // let btnAdd = document.getElementById('btnAdd');
             let formBtn = document.querySelector('#form');
+            let alerta = document.getElementById("divAlerta")
+
 
             console.log(formBtn);
 
@@ -85,9 +88,24 @@
                 .then(res => res.json())
                 .then(datos => {
                     if(datos == true){
-                      setInterval(() => {
-                          location.href = 'adminUsuarios.php'
-                      }, 1000);
+                        alerta.innerHTML = `
+                        <div class="alert alert-success" role="alert">
+                            Cliente Agregado correctamente ${inputName}
+                        </div>
+                        `
+                 
+                        setInterval(() => {
+                            location.href = 'adminUsuarios.php'
+                        }, 2500);
+                }else{
+                    alerta.innerHTML = `
+                        <div class="alert alert-danger" role="alert">
+                            Error al agregar, Comunicarse con Soporte 
+                        </div>
+                        `
+                        setInterval(() => {
+                            location.href = 'adminUsuarios.php'
+                        }, 2500);
                 }
             })
                 

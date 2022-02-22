@@ -77,6 +77,9 @@
 
                 for(let i = 0; i<btn.length; i++){  
                      btn[i].addEventListener('click',(e)=>{     
+
+                        //Armar aca mismo el ESTAS SEGURO QUE DESEA ELIMINAR !!!!!!
+                    
                     e.preventDefault();
 
                     let formulario = new FormData();
@@ -98,6 +101,7 @@
                     .then(res => res.json())
                     .then(datos => {
                             if(datos == true){
+                                e.preventDefault();
                                tr[i].remove();
                                 
                       }else{

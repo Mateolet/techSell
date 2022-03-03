@@ -1,6 +1,11 @@
 <?php  
 
-    require 'funciones/conexion.php';
+include 'includes/header.html';  
+include 'includes/nav.php';  
+require 'funciones/conexion.php';
+require 'funciones/publicaciones.php';
+$pubs = listarPubs();
+
 
 ?>
 

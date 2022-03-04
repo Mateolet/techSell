@@ -43,7 +43,7 @@
                     <td><?= $user['facebook']  ?></td>
                     <td><?= $user['tel']  ?></td>
                     <td>
-                        <a href="formModificarUsuarios.php?idUser=<?=$user["idUser"]?>" class="btn btn-outline-secondary">
+                        <a href="formModificarUsuarios.php?idUser=<?=$user["idUser"]?>" class="btn btn-outline-warning">
                             Modificar
                         </a>
                     </td>

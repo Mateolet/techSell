@@ -19,10 +19,10 @@ $pubs = listarPubs();
         <table class="table table-borderless table-striped table-hover">
             <thead>
                 <tr>
+                    <th>idProducto </th>
                     <th>Producto</th>
-                    <th>Precio</th>
-                    <th>Marca</th>
-                    <th>Categoria</th>
+                    <th>Estado</th>
+                    <th>Sellers</th>
                     <th>Presentacion</th>
                     <th>Imagen</th>
                     <th colspan="2">
@@ -33,13 +33,13 @@ $pubs = listarPubs();
                 </tr>
             </thead>
             <tbody>
-
+                <?php foreach($pubs as $pub): ?>
                 <tr>
-                    <td><?=$producto['prdNombre'] ?></td>
-                    <td>$<?=$producto['prdPrecio'] ?></td>
-                    <td><?= $producto['mkNombre'] ?></td>
-                    <td><?= $producto['catNombre'] ?></td>
-                    <td><?=$producto['prdPresentacion'] ?></td>
+                    <td><?=$pub['idPub'] ?></td>
+                    <td><?=$pub['namePub'] ?></td>
+                    <td><?= $pub['estado'] ?></td>
+                    <td><?= $pub['nomApUser'] ?></td>
+                    <!-- <td><?=$pub['prdPresentacion'] ?></td> -->
                     <!-- <td></td> -->
                     <td>
                         <a href="formModificarProducto.php?" class="btn btn-outline-warning">
@@ -52,6 +52,8 @@ $pubs = listarPubs();
                         </a>
                     </td>
                 </tr>
+
+                <?php endforeach?>
             </tbody>
         </table>
 

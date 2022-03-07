@@ -23,7 +23,7 @@ $pubs = listarPubs();
                     <th>Producto</th>
                     <th>Estado</th>
                     <th>Sellers</th>
-                    <th>Presentacion</th>
+                    <th>Descripcion</th>
                     <th>Imagen</th>
                     <th colspan="2">
                         <a href="formAgregarProducto.php" class="btn btn-outline-success">
@@ -37,10 +37,10 @@ $pubs = listarPubs();
                 <tr>
                     <td><?=$pub['idPub'] ?></td>
                     <td><?=$pub['namePub'] ?></td>
-                    <td><?= $pub['estado'] ?></td>
+                    <td id="estadoPub" data-estado="<?= $pub['estado'] ?>"></td>
                     <td><?= $pub['nomApUser'] ?></td>
-                    <!-- <td><?=$pub['prdPresentacion'] ?></td> -->
-                    <!-- <td></td> -->
+                    <td><?=$pub['descPu'] ?></td>
+                    <td>Ver Imagen</td>
                     <td>
                         <a href="formModificarProducto.php?" class="btn btn-outline-warning">
                             Modificar
@@ -62,5 +62,19 @@ $pubs = listarPubs();
         </a>
 
     </main>
+
+
+<script>
+    //ESTADO DE PUBLICACIÓN
+    let estadoPub = document.getElementById("estadoPub");
+    let estado = estadoPub.dataset.estado;
+    if(estado == 1){
+        estadoPub.innerText = "PUBLICADO";
+    }else{
+        estadoPub.innerText = "NO PUBLICADO"
+    } 
+        
+    
+</script>
 
 <?php  include 'includes/footer.php';  ?>

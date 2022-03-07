@@ -8,9 +8,9 @@ function listarPubs()
 {
    
     $link = conectar();
-        $sql = 'SELECT idPub, namePub, imgPub, estado, CONCAT(u.name," ",u.surname) as nomApUser
+        $sql = 'SELECT idPub, namePub, imgPub,descPu, estado, CONCAT(u.name," ",u.surname) as nomApUser
                 FROM pub as p
-                 INNER JOIN users as u ON u.idUser = p.idUser';
+                INNER JOIN users as u ON u.idUser = p.idUser';
         $resultado = mysqli_query($link, $sql)
          or die(mysqli_error($link)); // die para encontrar el error. se ejecuta antes del nav y header por eso no hay header ni nav
          return($resultado);

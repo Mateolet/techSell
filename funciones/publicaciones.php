@@ -8,7 +8,8 @@ function listarPubs()
 {
    
     $link = conectar();
-        $sql = 'SELECT idPub, namePub, imgPub,descPu, estado, CONCAT(u.name," ",u.surname) as nomApUser
+        $sql = 'SELECT idPub, namePub, descPu, estado, CONCAT(u.name," ",u.surname) as nomApUser,
+	        case when estado = 1 then "PUBLICADO" else "No publicado" end as estado 
                 FROM pub as p
                 INNER JOIN users as u ON u.idUser = p.idUser';
         $resultado = mysqli_query($link, $sql)

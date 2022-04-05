@@ -6,7 +6,6 @@ require 'funciones/conexion.php';
 require 'funciones/publicaciones.php';
 $pubs = listarPubs();
 
-
 ?>
 
     <main class="container">
@@ -19,7 +18,7 @@ $pubs = listarPubs();
         <table class="table table-borderless table-striped table-hover">
             <thead>
                 <tr>
-                    <th>idProducto </th>
+                    <th>ID</th>
                     <th>Producto</th>
                     <th>Estado</th>
                     <th>Sellers</th>
@@ -37,10 +36,12 @@ $pubs = listarPubs();
                 <tr>
                     <td><?=$pub['idPub'] ?></td>
                     <td><?=$pub['namePub'] ?></td>
-                    <td id="estadoPub" data-estado="<?= $pub['estado'] ?>"></td>
+                    <td id="estadoPub"> <?= $pub['estado'] ?> </td>
                     <td><?= $pub['nomApUser'] ?></td>
                     <td><?=$pub['descPu'] ?></td>
-                    <td>Ver Imagen</td>
+                    <td>
+                        <a href="imagenProducto.php">Ver Imagen</a>
+                    </td>
                     <td>
                         <a href="formModificarProducto.php?" class="btn btn-outline-warning">
                             Modificar
@@ -68,11 +69,11 @@ $pubs = listarPubs();
     //ESTADO DE PUBLICACIÓN
     let estadoPub = document.getElementById("estadoPub");
     let estado = estadoPub.dataset.estado;
-    if(estado == 1){
-        estadoPub.innerText = "PUBLICADO";
-    }else{
-        estadoPub.innerText = "NO PUBLICADO"
-    } 
+    // if(estado == 1){
+    //     estadoPub.innerText = "PUBLICADO";
+    // }else{
+    //     estadoPub.innerText = "NO PUBLICADO"
+    // } 
         
     
 </script>

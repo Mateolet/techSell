@@ -72,81 +72,71 @@
 
     <script>
 
-            let btnEliminar = document.getElementById("btnEliminar");
-            let btn = document.getElementsByClassName("btn-agarrar-data")
-            let tr = document.getElementsByClassName("tr-lista")
+        let btnEliminar = document.getElementById("btnEliminar");
+        let btn = document.getElementsByClassName("btn-agarrar-data")
+        let tr = document.getElementsByClassName("tr-lista")
 
 
 
 
-            let divEliminar = document.createElement("div")
-            let btnAceptar = document.createElement("button");
-            let btnCancelar = document.createElement("button")
-            divEliminar.id = "eliminarContainer"
-            btnAceptar.id = "AceptarEliminado"
-            btnCancelar.id = "CancelarEliminado"
-            document.body.appendChild(divEliminar)
-            divEliminar.appendChild(btnAceptar)
-            divEliminar.appendChild(btnCancelar)
+        let divEliminar = document.createElement("div")
+        let btnAceptar = document.createElement("button");
+        let btnCancelar = document.createElement("button")
+        divEliminar.id = "eliminarContainer"
+        btnAceptar.id = "AceptarEliminado"
+        btnCancelar.id = "CancelarEliminado"
+        document.body.appendChild(divEliminar)
+        divEliminar.appendChild(btnAceptar)
+        divEliminar.appendChild(btnCancelar)
 
-            btnAceptar.innerText = "Eliminar"
-            btnCancelar.innerText = "Cancelar"
+        btnAceptar.innerText = "Eliminar"
+        btnCancelar.innerText = "Cancelar"
+        
+            for(let i = 0; i<btn.length; i++){  
+                    btn[i].addEventListener('click',(e)=>{     
 
-            
-            
+                    // let divEliminar = document.createElement("div")
+                    //crearlo en funciones JS
+                    //Armar aca mismo el ESTAS SEGURO QUE DESEA ELIMINAR !!!!!!
+                
+                e.preventDefault();
 
+                let formulario = new FormData();
 
+                let inputID = btn[i].value;
+                // console.log(inputID)
+                let inputName = btn[i].dataset.nombre
 
-            console.log(divEliminar)
+                formulario.append('idUser',inputID)
+                formulario.append('name',inputName)
+                formulario.append('accion','eliminar')
+                
 
-            
-
-
-                for(let i = 0; i<btn.length; i++){  
-                     btn[i].addEventListener('click',(e)=>{     
-
-                        // let divEliminar = document.createElement("div")
-                        //crearlo en funciones JS
-                        //Armar aca mismo el ESTAS SEGURO QUE DESEA ELIMINAR !!!!!!
-                    
-                    e.preventDefault();
-
-                    let formulario = new FormData();
-
-                    let inputID = btn[i].value;
-                    // console.log(inputID)
-                    let inputName = btn[i].dataset.nombre
-
-                    formulario.append('idUser',inputID)
-                    formulario.append('name',inputName)
-                    formulario.append('accion','eliminar')
-                    
-
-                    
-                    fetch('./abm/usersAbm.php',{
-                        method:'POST',
-                        body: formulario
-                    })
-                    .then(res => res.json())
-                    .then(datos => {
-                            if(datos == true){
-                                e.preventDefault();
-                               tr[i].remove();
-                                
-                      }else{
-                         alerta.innerHTML = `
-                             <div class="alert alert-danger" role="alert">
-                                 Error al Modificar, Comunicarse con Soporte 
-                             </div>
-                             `
-                             setInterval(() => {
-                                 location.href = 'adminUsuarios.php'
-                             }, 4000);
-                     }
-                  })
-                    
+                
+                fetch('./abm/usersAbm.php',{
+                    method:'POST',
+                    body: formulario
                 })
-              }   
+                .then(res => res.json())
+                .then(datos => {
+                        if(datos == true){
+                            e.preventDefault();
+                            tr[i].remove();
+                            
+                    }else{
+                        alerta.innerHTML = `
+                            <div class="alert alert-danger" role="alert">
+                                Error al Modificar, Comunicarse con Soporte 
+                            </div>
+                            `
+                            setInterval(() => {
+                                location.href = 'adminUsuarios.php'
+                            }, 4000);
+                    }
+                })
+                
+            })
+            }   
             
 
         /* Hacerlo aca*/

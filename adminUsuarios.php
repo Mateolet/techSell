@@ -139,6 +139,8 @@
                 
             })
             }   
+
+            // RECORDAR CAMBIAR LA FOREING KEY A CASCADE EN LA BASE DE DATOS
             
 
         /* Hacerlo aca*/

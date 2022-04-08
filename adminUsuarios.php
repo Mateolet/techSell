@@ -58,7 +58,7 @@
                 ?>
             </tbody>
         </table>
-                
+              <h2 style="color: red;"></h2>  
         <a href="admin.php" class="btn btn-outline-secondary my-2">
             Volver a dashboard
         </a>
@@ -75,6 +75,8 @@
         let btnEliminar = document.getElementById("btnEliminar");
         let btn = document.getElementsByClassName("btn-agarrar-data")
         let tr = document.getElementsByClassName("tr-lista")
+        let tbody = document.querySelector("tbody")
+
 
 
 
@@ -93,13 +95,14 @@
         btnCancelar.innerText = "Cancelar"
         
             for(let i = 0; i<btn.length; i++){  
-                    btn[i].addEventListener('click',(e)=>{     
+                btn[i].addEventListener('click',(e)=>{    
+                    console.log("entre") 
 
                     // let divEliminar = document.createElement("div")
                     //crearlo en funciones JS
                     //Armar aca mismo el ESTAS SEGURO QUE DESEA ELIMINAR !!!!!!
                 
-                e.preventDefault();
+                // e.preventDefault();
 
                 let formulario = new FormData();
 
@@ -110,8 +113,10 @@
                 formulario.append('idUser',inputID)
                 formulario.append('name',inputName)
                 formulario.append('accion','eliminar')
-                
+                let h2 = document.querySelector("h2");
+                h2.style.color = "green"
 
+                console.log(tr[i])
                 
                 fetch('./abm/usersAbm.php',{
                     method:'POST',
@@ -119,19 +124,16 @@
                 })
                 .then(res => res.json())
                 .then(datos => {
-                        if(datos == true){
-                            e.preventDefault();
-                            tr[i].remove();
-                            
+                        if(datos.estado == true){
+                            // e.preventDefault();
+                            tbody.removeChild(tr[i])
+                            console.dir(h2);
+                            h2.style.color = "green"
+                            h2.innerText = datos.mensaje
+                        
                     }else{
-                        alerta.innerHTML = `
-                            <div class="alert alert-danger" role="alert">
-                                Error al Modificar, Comunicarse con Soporte 
-                            </div>
-                            `
-                            setInterval(() => {
-                                location.href = 'adminUsuarios.php'
-                            }, 4000);
+                        h2.style.color = "red"
+                        h2.innerText = datos.mensaje
                     }
                 })
                 

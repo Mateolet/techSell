@@ -58,4 +58,5 @@ main{
 #eliminarContainer{
     width: 20%;
     margin: auto;background-color: red;
-box-sizing: 100;z-index: 100;}
+    box-sizing: 100;z-index: 100;
+}

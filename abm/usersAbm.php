@@ -52,12 +52,19 @@ if($_POST["accion"] == "agregar"){
                         echo json_encode($resultado);
     }elseif($_POST["accion"] == "eliminar"){
 
+
         $idUser = $_POST["idUser"];
         $nombreUsu = $_POST["name"];
         $link = conectar();
-        $sql = "DELETE FROM users WHERE idUser =".$idUser;
+        $sql = "DELETE FROM users WHERE idUser = ".$idUser;
 
         $resultado = mysqli_query($link,$sql);
-
-        echo json_encode($resultado);
+        if($resultado == true){
+            $respuesta["estado"] = true;
+            $respuesta["mensaje"] = "Usuario Eliminado correctamente";
+        }else{
+            $respuesta["estado"] = false;
+            $respuesta["mensaje"] = "Tiene un producto relacionado. Eliminar el producto y luego el usuario";
+        }
+        echo json_encode($respuesta);
     }

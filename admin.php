@@ -3,6 +3,7 @@
 	include 'includes/nav.php';  
 ?>
 
+
     <main class="container">
         <h1>Dashboard - Panel de administracion</h1>
 

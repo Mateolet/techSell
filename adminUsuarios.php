@@ -79,67 +79,68 @@
 
 
 
-
-
-        let divEliminar = document.createElement("div")
-        let btnAceptar = document.createElement("button");
-        let btnCancelar = document.createElement("button")
-        divEliminar.id = "eliminarContainer"
-        btnAceptar.id = "AceptarEliminado"
-        btnCancelar.id = "CancelarEliminado"
-        document.body.appendChild(divEliminar)
-        divEliminar.appendChild(btnAceptar)
-        divEliminar.appendChild(btnCancelar)
-
-        btnAceptar.innerText = "Eliminar"
-        btnCancelar.innerText = "Cancelar"
-        
             for(let i = 0; i<btn.length; i++){  
                 btn[i].addEventListener('click',(e)=>{    
-                    console.log("entre") 
+                   
+                    // divEliminar.style.display = "block";
+                    let divEliminar = document.createElement("div")
+                    let btnAceptar = document.createElement("button");
+                    let btnCancelar = document.createElement("button")
+                    divEliminar.id = "eliminarContainer"
+                    btnAceptar.id = "AceptarEliminado"
+                    btnCancelar.id = "CancelarEliminado"
+                    document.body.appendChild(divEliminar)
+                    divEliminar.appendChild(btnAceptar)
+                    divEliminar.appendChild(btnCancelar)
 
+                    btnAceptar.innerText = "Eliminar"
+                    btnCancelar.innerText = "Cancelar"
+        
+
+                btnCancelar.addEventListener("click",()=>{
+
+                    document.body.removeChild(divEliminar);
+                })
                     // let divEliminar = document.createElement("div")
                     //crearlo en funciones JS
                     //Armar aca mismo el ESTAS SEGURO QUE DESEA ELIMINAR !!!!!!
-                
-                // e.preventDefault();
-
-                let formulario = new FormData();
-
-                let inputID = btn[i].value;
-                // console.log(inputID)
-                let inputName = btn[i].dataset.nombre
-
-                formulario.append('idUser',inputID)
-                formulario.append('name',inputName)
-                formulario.append('accion','eliminar')
-                let h2 = document.querySelector("h2");
-                h2.style.color = "green"
-
-                console.log(tr[i])
-                
-                fetch('./abm/usersAbm.php',{
-                    method:'POST',
-                    body: formulario
-                })
-                .then(res => res.json())
-                .then(datos => {
+                btnAceptar.addEventListener("click",()=>{
+                    
+                    let formulario = new FormData();
+                    
+                    let inputID = btn[i].value;
+                    // console.log(inputID)
+                    let inputName = btn[i].dataset.nombre
+                    
+                    formulario.append('idUser',inputID)
+                    formulario.append('name',inputName)
+                    formulario.append('accion','eliminar')
+                    let h2 = document.querySelector("h2");
+                    h2.style.color = "green"
+                    
+                    fetch('./abm/usersAbm.php',{
+                        method:'POST',
+                        body: formulario
+                    })
+                    .then(res => res.json())
+                    .then(datos => {
                         if(datos.estado == true){
                             // e.preventDefault();
                             tbody.removeChild(tr[i])
-                            console.dir(h2);
                             h2.style.color = "green"
                             h2.innerText = datos.mensaje
-                        
-                    }else{
-                        h2.style.color = "red"
-                        h2.innerText = datos.mensaje
-                    }
+                            document.body.removeChild(divEliminar)
+                            
+                        }else{
+                            h2.style.color = "red"
+                            h2.innerText = datos.mensaje
+                        }
+                    })
+                    
                 })
-                
             })
             }   
-
+            
             // RECORDAR CAMBIAR LA FOREING KEY A CASCADE EN LA BASE DE DATOS
             
 

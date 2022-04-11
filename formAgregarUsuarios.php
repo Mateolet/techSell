@@ -103,9 +103,6 @@
                             Error al agregar, Comunicarse con Soporte 
                         </div>
                         `
-                        setInterval(() => {
-                            location.href = 'adminUsuarios.php'
-                        }, 2500);
                 }
             })
                 

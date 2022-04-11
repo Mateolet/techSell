@@ -28,6 +28,7 @@ if($_POST["accion"] == "agregar"){
             )";
 
     $resultado = mysqli_query($link,$sql);
+
     echo json_encode($resultado);
     }elseif($_POST["accion"] == "modificar"){
                 $idUser = $_POST["idUser"];

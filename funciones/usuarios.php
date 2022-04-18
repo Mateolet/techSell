@@ -8,7 +8,7 @@ function listarUsuarios()
 {
    
     $link = conectar();
-        $sql = 'SELECT idUser, name, surname, instagram,facebook,tel
+        $sql = 'SELECT idUser, name, surname, instagram,facebook,tel, concat(name," ",surname) as nomap
                 FROM users';
         $resultado = mysqli_query($link, $sql)
          or die(mysqli_error($link)); // die para encontrar el error. se ejecuta antes del nav y header por eso no hay header ni nav

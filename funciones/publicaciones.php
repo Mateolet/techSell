@@ -8,36 +8,47 @@ function listarPubs()
 {
    
     $link = conectar();
-        $sql = 'SELECT idPub, namePub, descPu, estado, CONCAT(u.name," ",u.surname) as nomApUser,
-	        case when estado = 1 then "PUBLICADO" else "No publicado" end as estado 
-                FROM pub as p
-                INNER JOIN users as u ON u.idUser = p.idUser';
+        $sql = 'SELECT idPub, namePub, descPu, estado as estadoID, CONCAT(u.name," ",u.surname) as nomApUser,
+         case when estado = 1 then "PUBLICADO" else "NO PUBLICADO" end as estado
+          FROM pub as p INNER JOIN users as u ON u.idUser = p.idUser';
         $resultado = mysqli_query($link, $sql)
          or die(mysqli_error($link)); // die para encontrar el error. se ejecuta antes del nav y header por eso no hay header ni nav
          return($resultado);
         // return $resultado;
 }
 
-function listarUsuarioPorID(){
-
-
-
-        $idUser = $_GET["idUser"];
+function listarEstado(){
 
         $link = conectar();
-
-        $sql = "SELECT idUser, name, surname, instagram,facebook,tel
-                 FROM users
-                WHERE idUser = ".$idUser;
-
-        $resultado = mysqli_query($link, $sql);
-        
-                //obtenemos datos en array asociativo
-        $usuario = mysqli_fetch_assoc($resultado);
-
-        return $usuario;
+        $sql = 'SELECT estado as estadoID,
+                case when estado = 1 then "PUBLICADO" else "NO PUBLICADO" end as estado
+                from pub ';
+        $resultado = mysqli_query($link, $sql)
+         or die(mysqli_error($link)); // die para encontrar el error. se ejecuta antes del nav y header por eso no hay header ni nav
+         return($resultado);
 
 }
+
+// function listarUsuarioPorID(){
+
+
+
+//         $idUser = $_GET["idUser"];
+
+//         $link = conectar();
+
+//         $sql = "SELECT idUser, name, surname, instagram,facebook,tel
+//                  FROM users
+//                 WHERE idUser = ".$idUser;
+
+//         $resultado = mysqli_query($link, $sql);
+        
+//                 //obtenemos datos en array asociativo
+//         $usuario = mysqli_fetch_assoc($resultado);
+
+//         return $usuario;
+
+// }
 
 // function agregarUsuario(){
 

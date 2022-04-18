@@ -95,6 +95,8 @@
 
                     btnAceptar.innerText = "Eliminar"
                     btnCancelar.innerText = "Cancelar"
+
+                    
         
 
                 btnCancelar.addEventListener("click",()=>{

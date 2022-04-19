@@ -22,7 +22,7 @@ $pubs = listarPubs();
                     <th>Producto</th>
                     <th>Estado</th>
                     <th>Sellers</th>
-                    <th>Descripcion</th>
+                    <th style="max-width: 200px;">Descripcion</th>
                     <th>Imagen</th>
                     <th colspan="2">
                         <a href="formAgregarProducto.php" class="btn btn-outline-success">

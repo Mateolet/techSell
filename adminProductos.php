@@ -8,6 +8,28 @@ $pubs = listarPubs();
 
 ?>
 
+
+<style>
+    .desc:hover{
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    #descripcionLight{
+            width: 500px;
+        border: solid 1px;
+        word-wrap: break-word;
+        /* margin: auto; */
+        position: absolute;
+        z-index: 100;
+        background: red;
+        /* top: 50%; */
+        margin-left: -250px;
+        left: 50%;
+        top: 50%;
+    }
+    
+</style>
     <main class="container">
         <h1>Panel de administración de Productos</h1>
 
@@ -58,6 +80,9 @@ $pubs = listarPubs();
             </tbody>
         </table>
 
+        <div id="descripcionLight" style="display: none;">
+         
+        </div>
         <a href="admin.php" class="btn btn-outline-secondary my-2">
             Volver a dashboard
         </a>
@@ -75,18 +100,31 @@ $pubs = listarPubs();
     //     estadoPub.innerText = "NO PUBLICADO"
     // } 
         
-    
+    const clickRemove = (div)=>{
+        let body = document.querySelector("body");
+        
+        console.log("entre")   
+    }
+
+
 
     let descrip = document.getElementsByClassName("desc");
-    
+    let divLight = document.querySelector("#descripcionLight")
+    console.log(divLight)
     for(let i = 0; i<descrip.length; i++){
-        descrip[i].addEventListener("click",()=>{
+        descrip[i].addEventListener("click",(e)=>{
             
             console.dir(descrip[i].dataset.desc)
-    
+            divLight.innerHTML = descrip[i].dataset.desc
+            divLight.style.display = "block"
+            
+            
+            
+            
         })
+        clickRemove(divLight);            
     }
-   
+    
 </script>
 
 <?php  include 'includes/footer.php';  ?>

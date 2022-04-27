@@ -15,14 +15,14 @@ $pubs = listarPubs();
             Volver a dashboard
         </a>
 
-        <table class="table table-borderless table-striped table-hover">
+        <table class="table table-borderless table-striped table-hover" style="border-collapse: collapse;">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Producto</th>
                     <th>Estado</th>
                     <th>Sellers</th>
-                    <th style="max-width: 200px;">Descripcion</th>
+                    <th>Descripcion</th>
                     <th>Imagen</th>
                     <th colspan="2">
                         <a href="formAgregarProducto.php" class="btn btn-outline-success">
@@ -38,7 +38,7 @@ $pubs = listarPubs();
                     <td><?=$pub['namePub'] ?></td>
                     <td id="estadoPub"> <?= $pub['estado'] ?> </td>
                     <td><?= $pub['nomApUser'] ?></td>
-                    <td><?=$pub['descPu'] ?></td>
+                    <td id="descrip" class="desc" style="width: 22px;" data-desc="<?=$pub['descPu'] ?>">Ver Descripcion</td>
                     <td>
                         <a href="imagenProducto.php">Ver Imagen</a>
                     </td>
@@ -76,6 +76,17 @@ $pubs = listarPubs();
     // } 
         
     
+
+    let descrip = document.getElementsByClassName("desc");
+    
+    for(let i = 0; i<descrip.length; i++){
+        descrip[i].addEventListener("click",()=>{
+            
+            console.dir(descrip[i].dataset.desc)
+    
+        })
+    }
+   
 </script>
 
 <?php  include 'includes/footer.php';  ?>

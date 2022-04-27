@@ -17,17 +17,17 @@ function listarPubs()
         // return $resultado;
 }
 
-function listarEstado(){
+// function listarEstado(){
 
-        $link = conectar();
-        $sql = 'SELECT estado as estadoID,
-                case when estado = 1 then "PUBLICADO" else "NO PUBLICADO" end as estado
-                from pub ';
-        $resultado = mysqli_query($link, $sql)
-         or die(mysqli_error($link)); // die para encontrar el error. se ejecuta antes del nav y header por eso no hay header ni nav
-         return($resultado);
+//         $link = conectar();
+//         $sql = 'SELECT  TOP 1 estado as estadoID,
+//                 case when estado = 1 then "PUBLICADO" else "NO PUBLICADO" end as estado
+//                 from pub ';
+//         $resultado = mysqli_query($link, $sql)
+//          or die(mysqli_error($link)); // die para encontrar el error. se ejecuta antes del nav y header por eso no hay header ni nav
+//          return($resultado);
 
-}
+// }
 
 // function listarUsuarioPorID(){
 

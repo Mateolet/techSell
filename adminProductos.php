@@ -80,8 +80,8 @@ $pubs = listarPubs();
             </tbody>
         </table>
 
-        <div id="descripcionLight" style="display: none;">
-         
+        <div id="descripcionLight" style="display: none;"> 
+            <!-- Ponerle el display none -->
         </div>
         <a href="admin.php" class="btn btn-outline-secondary my-2">
             Volver a dashboard
@@ -99,31 +99,61 @@ $pubs = listarPubs();
     // }else{
     //     estadoPub.innerText = "NO PUBLICADO"
     // } 
-        
-    const clickRemove = (div)=>{
-        let body = document.querySelector("body");
-        
-        console.log("entre")   
-    }
+
+
 
 
 
     let descrip = document.getElementsByClassName("desc");
     let divLight = document.querySelector("#descripcionLight")
-    console.log(divLight)
+    let x = document.querySelector("#salir");
+    console.log(x)
+
+    console.log(descrip)
+
+
+
     for(let i = 0; i<descrip.length; i++){
+        //Se recorren las descripciones para poder listarlas segun el click que se le de en el momento
         descrip[i].addEventListener("click",(e)=>{
+
+            let divX = document.createElement("div");
+            let imgX = document.createElement("img");
+
+            divX.className = "imgDescSalir";
+
+            divLight.appendChild(divX);
+            divX.appendChild(imgX);
             
-            console.dir(descrip[i].dataset.desc)
-            divLight.innerHTML = descrip[i].dataset.desc
+            console.log(imgX)
+            imgX.src = "img/iconCruz.png"
+            imgX.id = "salir"
+
+            let ptext = document.createElement("p");
+            ptext.id = "textoDesc";
+
+            ptext.innerText = descrip[i].dataset.desc;
+            divLight.append(ptext);
+            console.log(divLight)
+            // divLight.innerHTML = descrip[i].dataset.desc;
             divLight.style.display = "block"
+
+
+          
+            divX.addEventListener("click",()=>{
+                ptext.remove();
+                divLight.style.display = "none";
+                ptext.innerText = "";
+                divX.remove();
+    })
+
+  
             
-            
-            
-            
+
         })
-        clickRemove(divLight);            
     }
+
+  
     
 </script>
 

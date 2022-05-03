@@ -1,2 +1,5 @@
 
+const botonSalir =  (div) =>{
 
+
+}

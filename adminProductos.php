@@ -138,13 +138,18 @@ $pubs = listarPubs();
             // divLight.innerHTML = descrip[i].dataset.desc;
             divLight.style.display = "block"
 
+            let borradoP = document.querySelectorAll("#textoDesc")
+            let borradoD = document.querySelectorAll("#imgDescSalir")
 
-          
+        
             divX.addEventListener("click",()=>{
-                ptext.remove();
+                for(let l = 0; l<borradoP.length; l++){
+                borradoP[l].remove();
+               console.log(borradoD[l])
+               console.log("ENTRA")
                 divLight.style.display = "none";
-                ptext.innerText = "";
                 divX.remove();
+            }
     })
 
   

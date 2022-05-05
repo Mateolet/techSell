@@ -39,7 +39,8 @@ $pubs = listarPubs();
 
         <table class="table table-borderless table-striped table-hover" style="border-collapse: collapse;">
             <thead>
-                <tr>
+                <tr> 
+                    <th>Seleccionar</th>
                     <th>ID</th>
                     <th>Producto</th>
                     <th>Estado</th>
@@ -55,7 +56,9 @@ $pubs = listarPubs();
             </thead>
             <tbody>
                 <?php foreach($pubs as $pub): ?>
+            
                 <tr>
+                    <td><input type="checkbox" data-id="<?=$pub['idPub']?>" id="Seleccion" class="seleccionarCheck"></td>
                     <td><?=$pub['idPub'] ?></td>
                     <td><?=$pub['namePub'] ?></td>
                     <td id="estadoPub"> <?= $pub['estado'] ?> </td>
@@ -91,6 +94,42 @@ $pubs = listarPubs();
 
 
 <script>
+
+
+
+let htmlColl = document.getElementsByClassName("seleccionarCheck");
+
+let checkSel = Array.from(htmlColl);
+
+console.log(checkSel);
+
+
+        let sel = [];
+
+    checkSel.forEach((e) => {
+        e.addEventListener("click",()=>{
+                console.log(e.dataset.id); 
+        if(e.checked == true){
+            dataId = e.dataset.id
+                sel.push(dataId)
+                console.log(sel);
+             
+        }else if(e.checked == false){
+            sel = sel.filter((n) => {
+                 return n !== e.dataset.id
+                console.log(n,"n");
+            })
+            // El filter me va a generar un "nuevo array" o modifcar el mismo cuando n 
+            // sea distinto del id que esta sacando es decir n 15 es disnto de 13 si, de 14 si, de 15 no , entonces lo saca 
+            //elemento filtro si es verdadero sino lo quita
+            // FILTER: si es igual la condicion va a generar la modificacion del array con el n === 16 , va a dejar el array sel solo ["16"];
+            // FILTER: si es disntinto va a generar la modificaocn del arrray con n !== 16 queda sel ["14","15"] saca al 16
+            console.log(sel);
+            } 
+        }) 
+    })
+        
+
     //ESTADO DE PUBLICACIÓN
     let estadoPub = document.getElementById("estadoPub");
     let estado = estadoPub.dataset.estado;
@@ -101,7 +140,7 @@ $pubs = listarPubs();
     // } 
 
 
-
+    
 
 
     let descrip = document.getElementsByClassName("desc");

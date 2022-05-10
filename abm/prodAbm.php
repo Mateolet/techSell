@@ -46,4 +46,6 @@ if($_POST["accion"] == "agregar"){
             $resultado["mensaje"] = "No se pudieron cargar los datos. Contactar con Soporte";
     }
     echo json_encode($resultado);
+}else if($_POST["accion"] == "eliminar"){
+    echo json_encode($_POST["checkSelected"]);
 }

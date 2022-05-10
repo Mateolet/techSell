@@ -53,7 +53,7 @@ if($_POST["accion"] == "agregar"){
                         echo json_encode($resultado);
     }elseif($_POST["accion"] == "eliminar"){
 
-
+     
         $idUser = $_POST["idUser"];
         $nombreUsu = $_POST["name"];
         $link = conectar();

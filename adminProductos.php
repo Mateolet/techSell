@@ -52,6 +52,11 @@ $pubs = listarPubs();
                             Agregar
                         </a>
                     </th>
+                    <th>
+                    <button class="btn btn-danger btn-agarrar-data" id="btnEliminar" >
+                            Eliminar
+                        </button>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -70,11 +75,6 @@ $pubs = listarPubs();
                     <td>
                         <a href="formModificarProducto.php?" class="btn btn-outline-warning">
                             Modificar
-                        </a>
-                    </td>
-                    <td>
-                        <a href="formEliminarProducto.php?" class="btn btn-outline-danger">
-                            Eliminar
                         </a>
                     </td>
                 </tr>
@@ -98,36 +98,52 @@ $pubs = listarPubs();
 
 
 let htmlColl = document.getElementsByClassName("seleccionarCheck");
+let btnEliminar = document.querySelector("#btnEliminar")
+
+btnEliminar.disabled = true;
 
 let checkSel = Array.from(htmlColl);
-
-console.log(checkSel);
-
-
-        let sel = [];
+    let sel = [];
 
     checkSel.forEach((e) => {
         e.addEventListener("click",()=>{
-                console.log(e.dataset.id); 
         if(e.checked == true){
             dataId = e.dataset.id
                 sel.push(dataId)
-                console.log(sel);
+                // console.log(sel);
              
         }else if(e.checked == false){
             sel = sel.filter((n) => {
                  return n !== e.dataset.id
-                console.log(n,"n");
             })
             // El filter me va a generar un "nuevo array" o modifcar el mismo cuando n 
             // sea distinto del id que esta sacando es decir n 15 es disnto de 13 si, de 14 si, de 15 no , entonces lo saca 
             //elemento filtro si es verdadero sino lo quita
             // FILTER: si es igual la condicion va a generar la modificacion del array con el n === 16 , va a dejar el array sel solo ["16"];
             // FILTER: si es disntinto va a generar la modificaocn del arrray con n !== 16 queda sel ["14","15"] saca al 16
-            console.log(sel);
+            // console.log(sel);
             } 
+            if(e.checked == true){
+                btnEliminar.disabled = false;
+            }
         }) 
     })
+
+    btnEliminar.addEventListener("click",(e)=>{
+
+        let datos = new FormData();
+
+        datos.append("accion",btnEliminar.value = "eliminar")
+        datos.append("checkSelected",sel);
+
+        fetch("./abm/prodAbm.php",{
+        method:"POST",
+        body:datos
+        })
+        .then(res => res.json())
+        .then(res => console.log(res));
+
+        })
         
 
     //ESTADO DE PUBLICACIÓN

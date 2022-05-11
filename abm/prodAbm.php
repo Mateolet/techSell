@@ -23,6 +23,8 @@
 
 require '../funciones/conexion.php';
 
+
+
 if($_POST["accion"] == "agregar"){
 
     $producto = $_POST["producto"];
@@ -31,7 +33,6 @@ if($_POST["accion"] == "agregar"){
     $descripcion = $_POST["descripcion"];
 
     $conexion = conectar();
-
     $sql = "INSERT INTO pub (idPub,namePub,estado,idUser,descPu) VALUES (DEFAULT,'".$producto."','".$estado."','".$seller."','".$descripcion."')";
 
 
@@ -47,5 +48,32 @@ if($_POST["accion"] == "agregar"){
     }
     echo json_encode($resultado);
 }else if($_POST["accion"] == "eliminar"){
-    echo json_encode($_POST["checkSelected"]);
+
+
+    $checks = $_POST["checkSelected"];
+
+    $conexion = conectar();
+
+    $sql = "DELETE FROM pub WHERE idPub in ($checks)";
+
+    die;
+    $respuesta = mysqli_query($conexion,$sql);
+
+    // var_dump($sql);die;
+
+    
+    if($respuesta == true){
+
+        $resultado["estado"] = true;
+        $resultado["mensaje"] = "Producto eliminado correctamente";
+
+
+    }else{
+        $resultado["estado"] = true;
+        $resultado["mensaje"] = "Error al eliminar el producto COD:0005";
+
+    }
+    echo json_encode($resultado);
+
+    
 }

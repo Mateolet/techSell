@@ -62,7 +62,7 @@ $pubs = listarPubs();
             <tbody>
                 <?php foreach($pubs as $pub): ?>
             
-                <tr>
+                <tr class="tr-lista">
                     <td><input type="checkbox" data-id="<?=$pub['idPub']?>" id="Seleccion" class="seleccionarCheck"></td>
                     <td><?=$pub['idPub'] ?></td>
                     <td><?=$pub['namePub'] ?></td>
@@ -99,6 +99,8 @@ $pubs = listarPubs();
 
 let htmlColl = document.getElementsByClassName("seleccionarCheck");
 let btnEliminar = document.querySelector("#btnEliminar")
+let tr = document.getElementsByClassName("tr-lista")
+let tbody = document.querySelector("tbody")
 
 btnEliminar.disabled = true;
 
@@ -107,6 +109,7 @@ let checkSel = Array.from(htmlColl);
 
     checkSel.forEach((e) => {
         e.addEventListener("click",()=>{
+
         if(e.checked == true){
             dataId = e.dataset.id
                 sel.push(dataId)
@@ -123,15 +126,27 @@ let checkSel = Array.from(htmlColl);
             // FILTER: si es disntinto va a generar la modificaocn del arrray con n !== 16 queda sel ["14","15"] saca al 16
             // console.log(sel);
             } 
-            if(e.checked == true){
-                btnEliminar.disabled = false;
-            }
+            
+            e.addEventListener("change",()=>{
+                if(sel.length == 0){
+                    btnEliminar.disabled = true;
+                }else{
+                    btnEliminar.disabled = false;
+
+                }
+            })
         }) 
     })
 
     btnEliminar.addEventListener("click",(e)=>{
 
-        let datos = new FormData();
+        for(let i = 0; i < checkSel.length; i++){
+            if(sel[i] && checkSel[i].dataset.id == sel[i]){
+                tbody.removeChild(tr[i])
+                console.log(i)
+            }
+        }
+       let datos = new FormData();
 
         datos.append("accion",btnEliminar.value = "eliminar")
         datos.append("checkSelected",sel);
@@ -141,8 +156,12 @@ let checkSel = Array.from(htmlColl);
         body:datos
         })
         .then(res => res.json())
-        .then(res => console.log(res));
+        .then(res =>{
 
+           
+
+
+        });
         })
         
 

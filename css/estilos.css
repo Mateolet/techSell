@@ -76,7 +76,11 @@ main{
 
 }
 
+.seleccionarCheck{
 
+    width: 20px;
+    height: 30px;
+}
 #CancelarEliminado{
 
     border: none;

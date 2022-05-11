@@ -56,7 +56,7 @@ if($_POST["accion"] == "agregar"){
 
     $sql = "DELETE FROM pub WHERE idPub in ($checks)";
 
-    die;
+
     $respuesta = mysqli_query($conexion,$sql);
 
     // var_dump($sql);die;

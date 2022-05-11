@@ -140,12 +140,11 @@ let checkSel = Array.from(htmlColl);
 
     btnEliminar.addEventListener("click",(e)=>{
 
-        for(let i = 0; i < checkSel.length; i++){
-            if(sel[i] && checkSel[i].dataset.id == sel[i]){
-                tbody.removeChild(tr[i])
-                console.log(i)
-            }
-        }
+        // for(let l = 0; l < checkSel.length; l++){
+        //     if(sel[l] && checkSel[l].dataset.id == sel[l]){
+        //         console.log(checkSel[l]);
+        //     }
+        // }
        let datos = new FormData();
 
         datos.append("accion",btnEliminar.value = "eliminar")
@@ -157,9 +156,13 @@ let checkSel = Array.from(htmlColl);
         })
         .then(res => res.json())
         .then(res =>{
+            if(res.estado){
+            console.log(res)
+            window.location.reload()
+            }else{
+                console.log(res.mensaje)
 
-           
-
+            }
 
         });
         })

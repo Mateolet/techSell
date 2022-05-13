@@ -33,7 +33,7 @@ if($_POST["accion"] == "agregar"){
     $descripcion = $_POST["descripcion"];
 
     $conexion = conectar();
-    $sql = "INSERT INTO pub (idPub,namePub,estado,idUser,descPu) VALUES (DEFAULT,'".$producto."','".$estado."','".$seller."','".$descripcion."')";
+    $sql = "INSERT INTO pub (idPub,namePub,date,estado,idUser,descPu) VALUES (DEFAULT,'".$producto."','".$estado."','".$seller."','".$descripcion."')";
 
 
     $respuesta = mysqli_query($conexion,$sql);

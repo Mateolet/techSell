@@ -40,11 +40,12 @@ $pubs = listarPubs();
         <table class="table table-borderless table-striped table-hover" style="border-collapse: collapse;">
             <thead>
                 <tr> 
-                    <th>Seleccionar</th>
+                    <th><input type="checkbox" id="Seleccion" class="seleccionarCheck"></th>
                     <th>ID</th>
                     <th>Producto</th>
                     <th>Estado</th>
                     <th>Sellers</th>
+                    <th>Fecha</th>
                     <th>Descripcion</th>
                     <th>Imagen</th>
                     <th colspan="2">
@@ -68,6 +69,7 @@ $pubs = listarPubs();
                     <td><?=$pub['namePub'] ?></td>
                     <td id="estadoPub"> <?= $pub['estado'] ?> </td>
                     <td><?= $pub['nomApUser'] ?></td>
+                    <td> <?= $pub["date"]?></td>
                     <td id="descrip" class="desc" style="width: 22px;" data-desc="<?=$pub['descPu'] ?>">Ver Descripcion</td>
                     <td>
                         <a href="imagenProducto.php">Ver Imagen</a>
@@ -157,8 +159,8 @@ let checkSel = Array.from(htmlColl);
         .then(res => res.json())
         .then(res =>{
             if(res.estado){
-            console.log(res)
-            window.location.reload()
+                console.log(res)
+                window.location.reload()
             }else{
                 console.log(res.mensaje)
 

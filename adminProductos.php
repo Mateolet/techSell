@@ -6,6 +6,13 @@ require 'funciones/conexion.php';
 require 'funciones/publicaciones.php';
 $pubs = listarPubs();
 
+
+$pubst = mysqli_fetch_assoc($pubs);
+
+$fechas = $pubst["date"];
+
+$fechas = date("Y-d-m");
+print_r($fechas);
 ?>
 
 
@@ -36,6 +43,8 @@ $pubs = listarPubs();
         <a href="admin.php" class="btn btn-outline-secondary my-2">
             Volver a dashboard
         </a>
+
+        <button id="clicka">CLICKA</button>
 
         <table class="table table-borderless table-striped table-hover" style="border-collapse: collapse;">
             <thead>
@@ -69,7 +78,7 @@ $pubs = listarPubs();
                     <td><?=$pub['namePub'] ?></td>
                     <td id="estadoPub"> <?= $pub['estado'] ?> </td>
                     <td><?= $pub['nomApUser'] ?></td>
-                    <td> <?= $pub["date"]?></td>
+                    <td id="fecha"> <?= $fechas?></td>
                     <td id="descrip" class="desc" style="width: 22px;" data-desc="<?=$pub['descPu'] ?>">Ver Descripcion</td>
                     <td>
                         <a href="imagenProducto.php">Ver Imagen</a>
@@ -99,6 +108,10 @@ $pubs = listarPubs();
 
 
 
+console.log(clicka)
+
+
+
 let htmlColl = document.getElementsByClassName("seleccionarCheck");
 let btnEliminar = document.querySelector("#btnEliminar")
 let tr = document.getElementsByClassName("tr-lista")
@@ -111,7 +124,6 @@ let checkSel = Array.from(htmlColl);
 
     checkSel.forEach((e) => {
         e.addEventListener("click",()=>{
-
         if(e.checked == true){
             dataId = e.dataset.id
                 sel.push(dataId)
@@ -128,7 +140,6 @@ let checkSel = Array.from(htmlColl);
             // FILTER: si es disntinto va a generar la modificaocn del arrray con n !== 16 queda sel ["14","15"] saca al 16
             // console.log(sel);
             } 
-            
             e.addEventListener("change",()=>{
                 if(sel.length == 0){
                     btnEliminar.disabled = true;
@@ -163,12 +174,12 @@ let checkSel = Array.from(htmlColl);
                 window.location.reload()
             }else{
                 console.log(res.mensaje)
-
             }
-
         });
         })
         
+
+
 
     //ESTADO DE PUBLICACIÓN
     let estadoPub = document.getElementById("estadoPub");

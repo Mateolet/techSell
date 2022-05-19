@@ -38,6 +38,9 @@ print_r($fechas);
     
 </style>
     <main class="container">
+    <div id="descripcionLight" style="display: none;"> 
+            <!-- Ponerle el display none -->
+        </div>
         <h1>Panel de administración de Productos</h1>
 
         <a href="admin.php" class="btn btn-outline-secondary my-2">
@@ -94,9 +97,6 @@ print_r($fechas);
             </tbody>
         </table>
 
-        <div id="descripcionLight" style="display: none;"> 
-            <!-- Ponerle el display none -->
-        </div>
         <a href="admin.php" class="btn btn-outline-secondary my-2">
             Volver a dashboard
         </a>

@@ -101,8 +101,6 @@ $pubs = listarPubs();
 
 
 
-console.log(clicka)
-
 
 
 let htmlColl = document.getElementsByClassName("seleccionarCheck");
@@ -190,7 +188,6 @@ let checkSel = Array.from(htmlColl);
     let descrip = document.getElementsByClassName("desc");
     let divLight = document.querySelector("#descripcionLight")
     let x = document.querySelector("#salir");
-    console.log(x)
 
     console.log(descrip)
 

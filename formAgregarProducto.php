@@ -42,7 +42,12 @@
                 <br>
                 Seleccionar Fecha
                   <input type="date" id="fecha">
+                  <br>
                 <!-- AGREGAR CAMPO IMG -->
+
+                <input type="file" name="imagenes[]" id="img" multiple>
+
+
                 <input type="hidden" name="" id="accion" value="">            
             </div>
             <div id="divAlerta">
@@ -64,6 +69,8 @@
     <script>
       let fecha = document.getElementById("fecha");
     let cambioFecha 
+
+   
 
 
       fecha.addEventListener("change",()=>{
@@ -93,12 +100,35 @@
                     }
                 })
             }
-               
+
+            
+            let imagenes = document.getElementById('img')
+
+                let arrayImg = [];
+
+                let f = []
+                let nombreArr = []
+
+
+                imagenes.addEventListener('change',()=>{
+
+                let files = imagenes.files;
+
+                let f = Array.from(files)
+
+                f.forEach((f) => {
+                    let nombre = f.name;
+                    let peso = f.size;
+                    nombreArr.push(nombre);
+                    nombreArr.push(peso);
+                })
+                })
+                        
+                clg
                 // console.log(seller,"seler")
 
             formBtn.addEventListener('submit',(e)=>{
                 e.preventDefault();
-
 
                 let formulario = new FormData();
                 
@@ -115,6 +145,7 @@
                 formulario.append('seller',seller)
                 formulario.append('descripcion',descripcion)
                 formulario.append('fecha',cambioFecha)
+                formulario.append('archivo',x)
 
                 console.log(cambioFecha,"cambio")
                 formulario.append('accion',inputAccion.value)
@@ -129,7 +160,7 @@
                     if(datos.estado == true){
                         alerta.innerHTML = `
                         <div class="alert alert-success" role="alert">
-                             ${datos.mensaje} ${producto}
+                             ${datos.mensaje}
                         </div>
                         `
                         setInterval(() => {

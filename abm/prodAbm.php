@@ -23,6 +23,7 @@
 
 require '../funciones/conexion.php';
 
+var_dump($_POST["archivo"]);
 
 
 if($_POST["accion"] == "agregar"){

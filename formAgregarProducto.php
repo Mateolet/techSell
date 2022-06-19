@@ -40,6 +40,8 @@
                 <label for="exampleFormControlTextarea1" class="form-label">Descripcion</label>
                     <textarea class="form-control" id="descripcion" rows="3"></textarea>
                 <br>
+                Seleccionar Fecha
+                  <input type="date" id="fecha">
                 <!-- AGREGAR CAMPO IMG -->
                 <input type="hidden" name="" id="accion" value="">            
             </div>
@@ -60,8 +62,15 @@
     </main>
 
     <script>
-      
-                let formBtn = document.getElementById('form');
+      let fecha = document.getElementById("fecha");
+    let cambioFecha 
+
+
+      fecha.addEventListener("change",()=>{
+        cambioFecha = fecha.value;
+      })
+
+      let formBtn = document.getElementById('form');
                 let alerta = document.getElementById("divAlerta");
                 
                 let selects = document.getElementsByClassName("select")
@@ -105,6 +114,9 @@
                 formulario.append('estado',estado)
                 formulario.append('seller',seller)
                 formulario.append('descripcion',descripcion)
+                formulario.append('fecha',cambioFecha)
+
+                console.log(cambioFecha,"cambio")
                 formulario.append('accion',inputAccion.value)
 
                 fetch('./abm/prodAbm.php',{
@@ -113,6 +125,7 @@
                 })
                 .then(res => res.json())
                 .then(datos => {
+                    console.log(datos)
                     if(datos.estado == true){
                         alerta.innerHTML = `
                         <div class="alert alert-success" role="alert">

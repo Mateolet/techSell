@@ -31,10 +31,10 @@ if($_POST["accion"] == "agregar"){
     $estado = $_POST["estado"];
     $seller = $_POST["seller"];
     $descripcion = $_POST["descripcion"];
+    $fecha = $_POST["fecha"];
 
     $conexion = conectar();
-    $sql = "INSERT INTO pub (idPub,namePub,date,estado,idUser,descPu) VALUES (DEFAULT,'".$producto."','".$estado."','".$seller."','".$descripcion."')";
-
+    $sql = "INSERT INTO pub (idPub,namePub,fechaPub,estado,idUser,descPu) VALUES (DEFAULT,'".$producto."','$fecha','".$estado."','".$seller."','".$descripcion."')";
 
     $respuesta = mysqli_query($conexion,$sql);
 

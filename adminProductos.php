@@ -6,13 +6,6 @@ require 'funciones/conexion.php';
 require 'funciones/publicaciones.php';
 $pubs = listarPubs();
 
-
-$pubst = mysqli_fetch_assoc($pubs);
-
-$fechas = $pubst["date"];
-
-$fechas = date("Y-d-m");
-print_r($fechas);
 ?>
 
 
@@ -47,8 +40,6 @@ print_r($fechas);
             Volver a dashboard
         </a>
 
-        <button id="clicka">CLICKA</button>
-
         <table class="table table-borderless table-striped table-hover" style="border-collapse: collapse;">
             <thead>
                 <tr> 
@@ -73,15 +64,17 @@ print_r($fechas);
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($pubs as $pub): ?>
-            
+                <?php foreach($pubs as $pub):
+                    DateTime::createFromFormat("d-m-Y",$pub["fechaPub"]);
+                    ?>
+                    
                 <tr class="tr-lista">
                     <td><input type="checkbox" data-id="<?=$pub['idPub']?>" id="Seleccion" class="seleccionarCheck"></td>
                     <td><?=$pub['idPub'] ?></td>
                     <td><?=$pub['namePub'] ?></td>
                     <td id="estadoPub"> <?= $pub['estado'] ?> </td>
                     <td><?= $pub['nomApUser'] ?></td>
-                    <td id="fecha"> <?= $fechas?></td>
+                    <td id="fecha"> <?= $pub["fechaPub"]?></td>
                     <td id="descrip" class="desc" style="width: 22px;" data-desc="<?=$pub['descPu'] ?>">Ver Descripcion</td>
                     <td>
                         <a href="imagenProducto.php">Ver Imagen</a>

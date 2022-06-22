@@ -18,8 +18,6 @@ function listarUsuarios()
 
 function listarUsuarioPorID(){
 
-
-
         $idUser = $_GET["idUser"];
 
         $link = conectar();

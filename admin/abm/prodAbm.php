@@ -27,7 +27,7 @@ require '../funciones/conexion.php';
 
 if($_POST["accion"] == "agregar"){
 
-    var_dump($conteoArchivos = count($_FILES['archivos']['name']));
+    $conteoArchivos = count($_FILES['archivos']['name']);
     $img = array();
 
     for($i = 0; $i<$conteoArchivos; $i++){
@@ -43,8 +43,9 @@ if($_POST["accion"] == "agregar"){
        array_push($img,$nuevoNombre);
        move_uploaded_file($ubiTemp,$nuevoNombre);
     }
-    
-
+    $img1 = '';
+    $img2 = '';
+    $img3 = '';
     foreach($img as $key => $name) {
         switch ($key) {
             case 0:
@@ -59,10 +60,9 @@ if($_POST["accion"] == "agregar"){
         }
 
     }
+    
     $conexion = conectar();
 
-    // $query = INSERT INTO pub (idPub,namePub,fechaPub,estado,idUser,descPu) VALUES (DEFAULT,'".$producto."','$fecha','".$estado."','".$seller."','".$descripcion."')";
-   
     $producto = $_POST["producto"];
     $estado = $_POST["estado"];
     $seller = $_POST["seller"];
@@ -79,8 +79,7 @@ if($_POST["accion"] == "agregar"){
 
     $res = mysqli_query($conexion,$query);
 
-
-    if($respuesta == true){
+    if($respuesta == true && $res == true){
         $resultado["estado"] = true;
         $resultado["mensaje"] = "Producto $producto cargado correctamente";
     }else{
@@ -88,7 +87,40 @@ if($_POST["accion"] == "agregar"){
             $resultado["mensaje"] = "No se pudieron cargar los datos. Contactar con Soporte";
     }
     echo json_encode($resultado);
-}else if($_POST["accion"] == "eliminar"){
+}else if($_POST['accion'] == 'modificar'){
+
+    $producto = $_POST["producto"];
+    $fecha = $_POST["fecha"];
+    $estado = $_POST["estado"];
+    $seller = $_POST["seller"];
+    $descripcion = $_POST["descripcion"];
+    $idPub = $_POST['idPub'];
+
+    $link = conectar();
+
+    $sql = "UPDATE pub
+    SET  namePub = '".$producto."',
+    fechaPub = '".$fecha."',
+    estado = '".$estado."',
+    idUser = '".$seller."',
+    descPu = '".$descripcion."'
+    WHERE idPub = ".$idPub;
+
+    $rps = mysqli_query($link,$sql);
+    if($rps == true){
+
+            $resultado["estado"] = true;
+            $resultado["mensaje"] = "Producto Modificado correctamente";
+
+
+        }else{
+            $resultado["estado"] = true;
+            $resultado["mensaje"] = "Error al Modificar el producto COD:0005";
+
+        }
+        echo json_encode($resultado);
+}
+else if($_POST["accion"] == "eliminar"){
 
 
     $checks = $_POST["checkSelected"];

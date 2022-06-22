@@ -52,7 +52,7 @@ $pubs = listarPubs();
                     <th>Descripcion</th>
                     <th>Imagen</th>
                     <th colspan="2">
-                        <a href="formAgregarProducto.php" class="btn btn-outline-success">
+                        <a href="formAgregarPublicacion.php" class="btn btn-outline-success">
                             Agregar
                         </a>
                     </th>
@@ -80,7 +80,7 @@ $pubs = listarPubs();
                         <a href="imagenProducto.php?idPub=<?=$pub['idPub'] ?>">Ver Imagen</a>
                     </td>
                     <td>
-                        <a href="formModificarProducto.php?" class="btn btn-outline-warning">
+                        <a href="formModificarPublicacion.php?idPub=<?=$pub['idPub']?>" class="btn btn-outline-warning">
                             Modificar
                         </a>
                     </td>

@@ -14,21 +14,28 @@ function listarPubs()
           order by idPub asc';
         $resultado = mysqli_query($link, $sql)
          or die(mysqli_error($link)); // die para encontrar el error. se ejecuta antes del nav y header por eso no hay header ni nav
-         return($resultado);
+         return $resultado;
         // return $resultado;
 }
 
-// function listarEstado(){
+function listarPubsID()
+{
+   
+  $id = $_GET['idPub'];
 
-//         $link = conectar();
-//         $sql = 'SELECT  TOP 1 estado as estadoID,
-//                 case when estado = 1 then "PUBLICADO" else "NO PUBLICADO" end as estado
-//                 from pub ';
-//         $resultado = mysqli_query($link, $sql)
-//          or die(mysqli_error($link)); // die para encontrar el error. se ejecuta antes del nav y header por eso no hay header ni nav
-//          return($resultado);
+    $link = conectar();
+        $sql = 'SELECT idPub, namePub, fechaPub,descPu, fechaPub,estado as estadoID, CONCAT(u.name," ",u.surname) as nomApUser,u.idUser,
+         case when estado = 1 then "PUBLICADO" else "NO PUBLICADO" end as estado
+          FROM pub as p INNER JOIN users as u ON u.idUser = p.idUser
+          where idPub = "'.$id.'"
+          order by idPub asc';
 
-// }
+        $resultado = mysqli_query($link, $sql)
+         or die(mysqli_error($link)); 
+         return mysqli_fetch_assoc($resultado);
+    
+}
+
 
 // function listarUsuarioPorID(){
 

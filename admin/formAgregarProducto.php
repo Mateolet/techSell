@@ -45,7 +45,7 @@
                   <br>
                 <!-- AGREGAR CAMPO IMG -->
 
-                <input type="file" name="imagenes[]" id="img" multiple>
+                <input type="file" name="imagenes" id="imagenesArc" multiple>
 
 
                 <input type="hidden" name="" id="accion" value="">            
@@ -102,38 +102,25 @@
             }
 
             
-            let imagenes = document.getElementById('img')
-
-                let arrayImg = [];
-
-                let f = []
-                let nombreArr = []
-
-
-                imagenes.addEventListener('change',()=>{
-
-                let files = imagenes.files;
-
-                let f = Array.from(files)
-
-                f.forEach((f) => {
-                    let nombre = f.name;
-                    let peso = f.size;
-                    nombreArr.push(nombre);
-                    nombreArr.push(peso);
-                })
-                })
-                        
-                clg
-                // console.log(seller,"seler")
-
+      
             formBtn.addEventListener('submit',(e)=>{
+
+
+             
                 e.preventDefault();
 
                 let formulario = new FormData();
+
+                // ENVIO DE IMAGENES
+                let inputArchivo = document.querySelector('#imagenesArc');
+                let archivoParaSubir = inputArchivo.files;
+                for(let archivo of archivoParaSubir){
+                    formulario.append('archivos[]',archivo)
+                }
+
                 
                 let producto = document.getElementById('producto').value
-                let estado =   estadoValue;         
+            let estado =   estadoValue;         
                 let seller = sellerValue;
                 let descripcion = document.getElementById('descripcion').value               
                 let inputAccion = document.getElementById('accion')
@@ -145,7 +132,6 @@
                 formulario.append('seller',seller)
                 formulario.append('descripcion',descripcion)
                 formulario.append('fecha',cambioFecha)
-                formulario.append('archivo',x)
 
                 console.log(cambioFecha,"cambio")
                 formulario.append('accion',inputAccion.value)

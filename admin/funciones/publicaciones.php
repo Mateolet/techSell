@@ -10,7 +10,8 @@ function listarPubs()
     $link = conectar();
         $sql = 'SELECT idPub, namePub, fechaPub,descPu, estado as estadoID, CONCAT(u.name," ",u.surname) as nomApUser,
          case when estado = 1 then "PUBLICADO" else "NO PUBLICADO" end as estado
-          FROM pub as p INNER JOIN users as u ON u.idUser = p.idUser';
+          FROM pub as p INNER JOIN users as u ON u.idUser = p.idUser
+          order by idPub asc';
         $resultado = mysqli_query($link, $sql)
          or die(mysqli_error($link)); // die para encontrar el error. se ejecuta antes del nav y header por eso no hay header ni nav
          return($resultado);

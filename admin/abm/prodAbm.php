@@ -23,21 +23,61 @@
 
 require '../funciones/conexion.php';
 
-var_dump($_POST["archivo"]);
 
 
 if($_POST["accion"] == "agregar"){
 
+    var_dump($conteoArchivos = count($_FILES['archivos']['name']));
+    $img = array();
+
+    for($i = 0; $i<$conteoArchivos; $i++){
+
+
+       $ubiTemp = $_FILES['archivos']['tmp_name'][$i];
+    
+       $nombre = $_FILES['archivos']['name'][$i];
+    
+       $ext = pathinfo($nombre,PATHINFO_EXTENSION);
+    
+       $nuevoNombre = sprintf("%s_%d.%s",uniqid(), $i,$ext);
+       array_push($img,$nuevoNombre);
+       move_uploaded_file($ubiTemp,$nuevoNombre);
+    }
+    
+
+    foreach($img as $key => $name) {
+        switch ($key) {
+            case 0:
+                $img1 = $name;
+                break;
+            case 1:
+                $img2 = $name;
+                break;
+            case 2:
+                $img3 = $name;
+                break;
+        }
+
+    }
+    $conexion = conectar();
+
+    // $query = INSERT INTO pub (idPub,namePub,fechaPub,estado,idUser,descPu) VALUES (DEFAULT,'".$producto."','$fecha','".$estado."','".$seller."','".$descripcion."')";
+   
     $producto = $_POST["producto"];
     $estado = $_POST["estado"];
     $seller = $_POST["seller"];
     $descripcion = $_POST["descripcion"];
     $fecha = $_POST["fecha"];
 
-    $conexion = conectar();
     $sql = "INSERT INTO pub (idPub,namePub,fechaPub,estado,idUser,descPu) VALUES (DEFAULT,'".$producto."','$fecha','".$estado."','".$seller."','".$descripcion."')";
 
     $respuesta = mysqli_query($conexion,$sql);
+
+    $ultimoId =  mysqli_insert_id($conexion);
+
+    $query = "INSERT INTO imgpub(idimg, img1, img2, img3, idPub) VALUES (DEFAULT, '".$img1."','".$img2."','".$img3."','$ultimoId')";
+
+    $res = mysqli_query($conexion,$query);
 
 
     if($respuesta == true){

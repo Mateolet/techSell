@@ -77,7 +77,7 @@ $pubs = listarPubs();
                     <td id="fecha"> <?= $pub["fechaPub"]?></td>
                     <td id="descrip" class="desc" style="width: 22px;" data-desc="<?=$pub['descPu'] ?>">Ver Descripcion</td>
                     <td>
-                        <a href="imagenProducto.php">Ver Imagen</a>
+                        <a href="imagenProducto.php?idPub=<?=$pub['idPub'] ?>">Ver Imagen</a>
                     </td>
                     <td>
                         <a href="formModificarProducto.php?" class="btn btn-outline-warning">
